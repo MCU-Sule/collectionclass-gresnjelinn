@@ -1,0 +1,70 @@
+Nama : Grace Angelina Gunawan
+NRP  : 2072028
+
+- how to search for data with nrp
+(Program lengkap yang sudah termasuk pencarian data ada di file yang modified)
+Pertama kita akan mencari terlebih dahulu NRP yang kita inputkan ini ada di index ke berapa
+Ini dilakukan menggunakan forEach, saat nrp dari data yang diperiksa cocok dengan input, maka index akan diambil menggunakan indexOf dan dicatat ke variabel idx
+Kemudian buat sebuah ObservableList baru misalnya aList, khusus untuk menyimpan data yang sesuai NRP nya
+Akhirnya, yang ditampilkan di tabel adalah aList bukan oList 
+
+- how to delete
+(Program lengkap yang sudah termasuk hapus data dengan selectedIndex ada di file yang modified)
+Banyak metode yang bisa kita gunakan untuk delete, salah satunya adalah seperti yang sudah dilakukan di program standarnya
+Yaitu dengan mencari NRP yang diinput ada di index ke berapa, kemudian memanggil .remove() untuk menghapus data pada index yang telah kita ketahui tadi
+Cara lainnya adalah dengan menggunakan getSelectedIndex, dengan cara ini, kita dapat memilih salah satu baris pada tabel, kemudian saat button ditekan, data terhapus
+Ini dilakukan dengan mengambil index dari data yang kita select, kemudian menghapusnya menggunakan .remove()
+
+- how to prevent error when no data deleted
+Pada program yang saya kerjakan, kebetulan tidak muncul error apapun walaupun NRP yang dimasukkan tidak ada pada data
+Ini terjadi dikarenakan semua kode untuk menghapus dituliskan di dalam if yang hanya akan dijalankan jika NRP ditemukan pada salah satu data, termasuk dengan deklarasi variabel idx
+Jadi jika pada akhirnya tidak ditemukan kesamaan, tidak akan ada kode apapun yang terpanggil sehingga tidak muncul error
+Namun dalam kasus lainnya, untuk menghindari error saat tidak ada data yang dihapus, gunakan exception, ini akan memunculkan kalimat sebagai ganti error sehingga program dapat berjalan
+Exception dapat dibuat sendiri, ataupun menggunakan exception yang sudah ada, misalnya untuk kasus ini kita dapat menggunakan ObjectNotFoundException()
+
+- how to show error when no data deleted
+Jika hanya ingin menampilkan kalimat error pada saat program dijalankan, dapat dilakukan dengan exception kemudian mengganti kalimatnya dengan kalimat tertentu
+Namun jika yang dimaksud di sini adalah menampilkan error seperti dalam bentuk box, kita dapat menggunakan Alert Box
+Ini bisa dibuat dengan membuat class AlertBox terlebih dahulu, di situ akan dibuat alert box dari awal
+Alert box ini sama seperti membuat sebuah stage dan scene baru, yang hanya akan ditampilkan pada saat error tersebut terjadi
+Namun sebelum itu juga exception tetap harus dibuat karena kita akan mengalihkan error yang seharusnya terjadi menjadi muncul sebuah alert box
+
+- how to add confirm box to make sure deletion
+Di sini kita juga akan membuat sebuah class ConfirmationBox, untuk membuat sebuah confirmation box dari awal
+Kode yang ditulis adalah seperti membuat sebuah stage dan scene baru
+Jadi tombol yang sebelumnya onAction nya diarahkan untuk langsung men delete, sekarang akan diarahkan untuk memunculkan confirmation box ini
+Kemudian ada tombol lagi di dalam confirmation box itu, jika kita menekannya baru akan memanggil method delete yang sudah kita buat sebelumnya
+
+- how to know which data selected from table select
+Misalkan kita memiliki tabel dengan id table, dengan menggunakan table.getSelectionModel() kita dapat mengambil informasi apa yang terpilih dari tabel tersebut
+Biasanya kita akan mengetahui data mana yang kita pilih jika kita mengetahui indexnya 
+Jika kita ingin mendapatkan index dari data yang terpilih tersebut, kita dapat menggunakan .getSelectedIndex() sehingga kodenya menjadi table.getSelectionModel().getSelectedIndex()
+Selain itu juga ada beberapa pilihan lain, misal .getSelectedItems() untuk mengambil item yang terpilih secara langsung, ataupun .getFocusedIndex() untuk mengambil index yang sedang difokuskan
+
+- how to show selected data from table on the txtNrpDelete
+Sebenarnya masih abstrak juga tentang apa yang dimaksud oleh txtNrpDelete ini
+Namun secara umum, untuk mengambil data yang terselect, gunakan .getSelectionModel() kemudian .getSelectedIndex() jika ingin mengambil index atau .getSelectedItems() jika ingin mengambil items
+Jika txtNrpDelete ini merupakan fx id dari salah satu textfield, berarti caranya sama seperti kita mencari data menggunakan NRP, karena pada kasus tersebut NRP juga diinputkan pada text field
+Namun pembedanya adalah .getNrp() nya diganti menjadi .get data apa yang kita ingin cocokkan
+
+- how to delete data selected from table select
+(Program lengkap yang sudah termasuk hapus data dengan selectedIndex ada di file yang modified)
+Pertama, kita akan mengambil index dari tabel yang kita select
+Ini dilakukan dengan table.getSelectionModel() kemudian dilanjut dengan .getSelectedIndex() untuk mengambil indexnya
+Setelah itu, hapus data dengan index tersebut dari tabel dengan menggunakan table.getItems.remove(index)
+
+- if student has multiple score, and you would like to add delete update score on student what file need to be added
+Jika mahasiswa memiliki banyak nilai, maka ada 2 opsi untuk menyimpan nilai tersebut
+Yang pertama, setiap nilai dijadikan column, ini berarti kita perlu menambah column pada table
+Kemudian menambahkan nilai1, nilai2, dst pada model
+Kita juga menyesuaikan ObservableList yang dibuat, kini data yang diinputkan tidak hanya nrp dan nama saja, tetapi juga beserta nilai1, nilai2, dst..
+Untuk cara ini, kita tidak menambahkan file namun hanya memperbarui apa yang sudah ada
+Yang kedua, kita bisa menyimpan seluruh nilai dalam satu column atau satu variabel saja, namun ini disimpan dalam bentuk Object 
+Sehingga file yang harus ditambahkan adalah model untuk observable list yang menyimpan nilai dari mahasiswa tersebut
+
+- if student has multiple score, and you would like to add delete update score on student what file need to be updated
+Seperti yang sudah disebutkan di atas, ada setidaknya 2 opsi untuk menyimpan nilai tersebut
+Namun untuk kedua tipe tersebut, dikarenakan karena kita melakukan update pada model maka yang diubah kurang lebih sama
+Pertama, ada hello-view yang pasti terubah karena kita menambahkan column
+Kemudian, pada model, akan ditambahkan variabel baru sehingga constructor getter setter nya juga menyesuaikan
+Dan pada HelloController akan dilakukan sangat banyak perubahan, untuk semua hal yang berkaitan dan menggunakan ObservableList
